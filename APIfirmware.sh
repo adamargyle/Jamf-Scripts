@@ -1,6 +1,6 @@
 #!/bin/bash
 # 2019-05-01 awickert
-# Check for firmware password, set if not enabled sing asset_tag
+# Check for firmware password, set if not enabled using asset_tag
 # Using script parameters $4, $5, $6 as reccomended by https://www.jamf.com/jamf-nation/articles/146/script-parameters
 
 serialNumber="$(ioreg -rd1 -c IOPlatformExpertDevice | awk -F'"' '/IOPlatformSerialNumber/{print $4}')"
