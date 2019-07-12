@@ -4,4 +4,4 @@
 
 group="$4"
 
-dseditgroup -o edit -a "HAMILTON-D\${group}" -t group admin
+dseditgroup -o edit -a "DOMAIN_NAME\${group}" -t group admin

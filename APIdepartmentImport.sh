@@ -2,7 +2,7 @@
 # from https://www.jamf.com/jamf-nation/discussions/24971/importing-departments-into-jamfpro-from-a-csv
 
 #Declare variables
-server="https://hamiltoncollege.jamfcloud.com:8443"
+server=""
 username=""                           #JSS username with API privileges
 password=""                           #Password for the JSS account
 file=""      #Path to CSV
