@@ -3,6 +3,9 @@
 # run jamf policy by trigger
 
 event=$4
+if [[ -z $event ]]; then
+	read -p "Jamf Custom Trigger:" event
+fi
 
 jamf policy -event $event
 

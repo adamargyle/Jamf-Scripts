@@ -5,8 +5,17 @@
 
 serialNumber="$(ioreg -rd1 -c IOPlatformExpertDevice | awk -F'"' '/IOPlatformSerialNumber/{print $4}')"
 apiUser="$4"
+if [[ -z $apiUser ]]; then
+	read -p "Username:" apiUser
+fi
 apiPass="$5"
+if [[ -z $apiPass ]]; then
+	read -sp "Password:" apiPass
+fi
 jssHost="$6"
+if [[ -z $jssHost ]]; then
+	read -p "JSS Host Address:" jssHost
+fi
 
 username=$(/usr/bin/curl -H "Accept: text/xml" -sfku "${apiUser}:${apiPass}" "${jssHost}/JSSResource/computers/serialnumber/${serialNumber}/subset/location" | xmllint --format - 2>/dev/null | awk -F'>|<' '/<username>/{print $3}')
 dscl . -append /Groups/admin GroupMembership $username

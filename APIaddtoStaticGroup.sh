@@ -1,6 +1,6 @@
 #!/bin/bash
 # 2020-03-01 awickert
-# get the barcode from jamf asset_tag and set the hostname
+# Add a computer to a static group byt its ID
 # Using script parameters $4, $5, $6 as reccomended by https://www.jamf.com/jamf-nation/articles/146/script-parameters
 # also works interactively for testing
 
@@ -17,9 +17,16 @@ jssHost="$6"
 if [[ -z $jssHost ]]; then
 	read -p "JSS Host Address:" jssHost
 fi
-
-barcode=$(/usr/bin/curl -H "Accept: text/xml" -sfku "${apiUser}:${apiPass}" "${jssHost}/JSSResource/computers/serialnumber/${serialNumber}/subset/general" | xmllint --format - 2>/dev/null | awk -F'>|<' '/<asset_tag>/{print $3}')
-hostname=Mac-$barcode
-scutil --set ComputerName $hostname
-scutil --set HostName $hostname
-scutil --set LocalHostName $hostname
+groupID="$7"
+if [[ -z $groupID ]]; then
+	read -p "Group ID Number:" groupID
+fi
+	
+apiData="<computer_group><computer_additions><computer><serial_number>${serialNumber}</serial_number></computer></computer_additions></computer_group>"
+curl \
+	-s \
+	-f \
+	-u ${apiUser}:${apiPass} \
+	-X PUT \
+	-H "Content-Type: text/xml" \
+	-d "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>${apiData}" ${jssHost}/JSSResource/computergroups/id/${groupID}

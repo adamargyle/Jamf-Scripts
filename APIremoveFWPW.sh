@@ -1,6 +1,6 @@
 #!/bin/bash
-# 2020-03-01 awickert
-# Check for firmware password, set if not enabled using asset_tag
+# 2020-02-25 awickert
+# Check for firmware password, remove if enabled
 # Using script parameters $4, $5, $6 as reccomended by https://www.jamf.com/jamf-nation/articles/146/script-parameters
 # also works interactively for testing
 
@@ -21,18 +21,16 @@ doesexist=`firmwarepasswd -check`
 barcode=$(/usr/bin/curl -H "Accept: text/xml" -sfku "${apiUser}:${apiPass}" "${jssHost}/JSSResource/computers/serialnumber/${serialNumber}/subset/general" | xmllint --format - 2>/dev/null | awk -F'>|<' '/<asset_tag>/{print $3}')
 firmware=passwordscheme${barcode}
 
-if [ "$doesexist" = "Password Enabled: No" ]; then
+if [ "$doesexist" = "Password Enabled: Yes" ]; then
 
 /usr/bin/expect <<- DONE
-	spawn firmwarepasswd -setpasswd
-	expect "Enter new password:"
-	send "$firmware\r";
-	expect "Re-enter new password:"
+	spawn firmwarepasswd -delete
+	expect "Enter password:"
 	send "$firmware\r";
 	expect EOF
 DONE
 
 else
-	echo "Firmware Password Already Exists"
+	echo "No Firmware Password Set"
 	
 fi
