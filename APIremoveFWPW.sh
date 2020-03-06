@@ -22,14 +22,12 @@ barcode=$(/usr/bin/curl -H "Accept: text/xml" -sfku "${apiUser}:${apiPass}" "${j
 firmware=passwordscheme${barcode}
 
 if [ "$doesexist" = "Password Enabled: Yes" ]; then
-
-/usr/bin/expect <<- DONE
-	spawn firmwarepasswd -delete
-	expect "Enter password:"
-	send "$firmware\r";
-	expect EOF
-DONE
-
+	/usr/bin/expect <<- DONE
+		spawn firmwarepasswd -delete
+		expect "Enter password:"
+		send "$firmware\r";
+		expect EOF
+	DONE
 else
 	echo "No Firmware Password Set"
 	

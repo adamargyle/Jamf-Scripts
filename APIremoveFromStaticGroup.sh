@@ -1,6 +1,6 @@
 #!/bin/bash
 # 2020-02-25 awickert
-# Remove a computer from a static group with the Jamf API
+# Remove a computer from a static group by its ID with the Jamf API, help from @koalatee
 # Using script parameters $4, $5, $6 as reccomended by https://www.jamf.com/jamf-nation/articles/146/script-parameters
 # also works interactively for testing
 

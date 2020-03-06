@@ -22,17 +22,14 @@ barcode=$(/usr/bin/curl -H "Accept: text/xml" -sfku "${apiUser}:${apiPass}" "${j
 firmware=passwordscheme${barcode}
 
 if [ "$doesexist" = "Password Enabled: No" ]; then
-
-/usr/bin/expect <<- DONE
-	spawn firmwarepasswd -setpasswd
-	expect "Enter new password:"
-	send "$firmware\r";
-	expect "Re-enter new password:"
-	send "$firmware\r";
-	expect EOF
-DONE
-
+	/usr/bin/expect <<- DONE
+		spawn firmwarepasswd -setpasswd
+		expect "Enter new password:"
+		send "$firmware\r";
+		expect "Re-enter new password:"
+		send "$firmware\r";
+		expect EOF
+	DONE
 else
 	echo "Firmware Password Already Exists"
-	
 fi

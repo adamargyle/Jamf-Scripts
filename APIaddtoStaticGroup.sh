@@ -1,6 +1,6 @@
 #!/bin/bash
 # 2020-03-01 awickert
-# Add a computer to a static group byt its ID
+# Add a computer to a static group by its ID with the Jamf API, help from @koalatee
 # Using script parameters $4, $5, $6 as reccomended by https://www.jamf.com/jamf-nation/articles/146/script-parameters
 # also works interactively for testing
 
