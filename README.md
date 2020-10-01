@@ -23,3 +23,8 @@ These scripts are used for various purposes without the Jamf Pro API, but are ge
 * **jamfEvent** is a script I use to make Self Service buttons out of existing policies with custom triggers that may already be scoped in Jamf Pro. This lets me scope the self service policy to a subset, but also use the custom event policy for a wider deployment. It also means I only need to update a single policy when software updates come out.
 * **resetkeychain** is a script to reset a keychain when an AD mobile account user changed their password elsewhere and it is not updating correctly. It just creates a new keychain.
 * **startupChime** re-enables the startup chime on newer macs, because it's fun and it made the blog rounds https://mrmacintosh.com/how-to-enable-the-mac-startup-chime-on-your-2016-macbook-pro/
+
+## Outset User Default Scripts
+These are scripts intended to be used with login-once using outset
+* **defaultdock** using dockutil this clears the dock and sets a default. Its set to run once at login-once and this sets but does not enforce for a new user's profile
+* **defaultusersettings** sets security settings and finder preferences as well as sets the desktop image with desktoppr to a default image.
