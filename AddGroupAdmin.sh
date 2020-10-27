@@ -1,10 +1,15 @@
 #!/bin/bash
-# 2019-05-01 awickert
+# awickert 2020-10-27 
 # set an AD group as admin on a machine using script parameter 
 
-group="$4"
+## Check if the group has been provided, ask for it if not
+groupname="$4"
 if [[ -z $group ]]; then
 	read -p "Group Name:" group
 fi
 
-dseditgroup -o edit -a "DOMAIN_NAME\${group}" -t group admin
+## add group to the local admin group list
+dseditgroup -o edit -a "DOMAIN_NAME\${groupname}" -t group admin
+
+## add group to the domain admins group
+dsconfigad -groups "DOMAIN_NAME\${groupname}"

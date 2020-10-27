@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2020-09-30
+# awickert 2020-09-30
 # Script to set user settings at first login via outset
 
 # Secure home folder

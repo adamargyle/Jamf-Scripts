@@ -15,11 +15,13 @@
 # 7. If the conversion process succeeded, update the permissions on the account's home folder.
 # 8. Ensure Admin rights are retained for the user.
 
+## Checks if the username has been provided, asks for it if not
 username=$3
 if [[ -z $username ]]; then
 	read -p "Username:" username
 fi
 
+## Checks the version of macOS
 osvers=$(sw_vers -productVersion | awk -F. '{print $2}')
 
 PasswordMigration(){
@@ -44,6 +46,7 @@ PasswordMigration(){
 	fi
 }
 
+## get account type
 accounttype=`/usr/bin/dscl . -read /Users/"$username" AuthenticationAuthority | head -2 | awk -F'/' '{print $2}' | tr -d '\n'`
 	
 if [[ "$accounttype" = "Active Directory" ]]; then
