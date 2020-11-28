@@ -1,13 +1,13 @@
 #!/bin/bash
-# awickert 2020-02-25
+# awickert 2020-11-23
 # Check for firmware password, remove if enabled using the provided password
 # Using script parameters $4, $5, $6 as reccomended by https://www.jamf.com/jamf-nation/articles/146/script-parameters
-# also works interactively for testing
+# also works interactively for testing. skips if machine is M1 powered
 
 arch=$(/usr/bin/arch)
 
 if [ "$arch" == "arm64" ]; then
-	echo "firmwarepasswd command not support on Apple Silicon devices"
+	echo "firmwarepasswd command not supported on Apple Silicon devices"
 	exit 0
 else
 	## Grab the serial number of the device
