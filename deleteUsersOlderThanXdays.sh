@@ -12,8 +12,8 @@ if [[ -z $days ]]; then
 	read -p "Profile Age:" days
 fi
 
-## Using python get the vcurrently logged in user
-loggedInUser=$(/usr/bin/python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys; username = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0]; username = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write(username + "\n");')
+## new shorter bash method to get logged in user
+loggedInUser=$( scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }' )
 
 ## Do not delete the current user or the shared folder, add additional users if needed
 permanent=("/Users/Shared" "/Users/$loggedInUser")
