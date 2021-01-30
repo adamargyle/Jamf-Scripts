@@ -1,5 +1,5 @@
 #!/bin/bash
-# awickert 2020-09-09
+# awickert 2021-01-29
 # remove user folders older than a specific age
 # using $4 as a specified variable in Jamf Pro
 # based on a script from a coworker who based it on another script originally from github.com/dankeller/macscripts
