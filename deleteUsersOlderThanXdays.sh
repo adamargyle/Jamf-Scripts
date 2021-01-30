@@ -16,7 +16,7 @@ fi
 loggedInUser=$( scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }' )
 
 ## Do not delete the current user or the shared folder, add additional users if needed
-permanent=("/Users/Shared" "/Users/$loggedInUser")
+permanent=("Shared" "$loggedInUser")
 
 ## Verify script is being run as root
 if [[ $UID -ne 0 ]]; then echo "$0 must be run as root." && exit 1; fi
@@ -34,8 +34,9 @@ for username in $allusers; do
 		# delete user
 		/usr/bin/dscl . delete $username > /dev/null 2>&1
 		
-		# delete home folder
-		/bin/rm -r $username
+		# find and delete home folder (in case it is not in /Users/)
+		home=$( dscl . read /Users/${username} NFSHomeDirectory )
+		/bin/rm -r $home
 		continue
 	else
 		echo "skip" $username
