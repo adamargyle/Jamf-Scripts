@@ -5,10 +5,10 @@
 ## get logged in user
 user=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 
-## find users home folder location
+## Find users home folder location
 home=$(dscl . read /Users/"$user" NFSHomeDirectory | awk '{print $2}')
 
-## clear keychains
+## Clear keychains
 rm -rf "$home"/Library/Keychains/*
 
 exit

@@ -21,7 +21,7 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 # Set folders to be sorted first in Finder view
 defaults write com.apple.finder.plist _FXSortFoldersFirst -bool true
 
-#show Hard Drives, Network Drives, removable media on desktop
+# Show Hard Drives, Network Drives, removable media on desktop
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
