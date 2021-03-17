@@ -17,14 +17,6 @@ These scripts are used for various purposes without the Jamf Pro API, but are ge
 * **AddGroupAdmin** adds an AD group to the admin list. This implementation does not seem to work with macOS Mojave and newer versions of macOS.
 * **AddUserAdmin** adds a user as admin based on a variable. This is helpful for not having a bunch of scripts for individual department labs where a specific user should be a local admin.
 * **deleteUsersOlderThanXdays** is intended to run in a policy on a schedule where it will delete users that haven't been used in a specified time period.
-* **NVRAMclear** runs the command line version of an NVRAM/PRAM reset. This can help some issues and when an EFI firmware password is enabled it will allow a user who cannot utilize the option to hold modifier keys during startup.
 * **autoMigratetoLocal** is based on Rich Trouton's interactive script https://github.com/rtrouton/rtrouton_scripts/tree/master/rtrouton_scripts/migrate_ad_mobile_account_to_local_account but intended for use in Self Service. It uses the #3 variable to pull the user logged in to Self Service and migrate that account if it is in fact a mobile account, and retains admin permissions as it is configured in our environment. The policy is configured to run 3 things; this script to migrate the account, install the NoMAD profile and then the NoMAD application and launchagent.
 * **installWithChoices** is a script that is intended to run a policy by putting a packaging in a staging location, in this case /Library/Management and then calling the installer with the choices.xml file to customize the install. Following the install this also will delete the files from the staging location.
 * **jamfEvent** is a script I use to make Self Service buttons out of existing policies with custom triggers that may already be scoped in Jamf Pro. This lets me scope the self service policy to a subset, but also use the custom event policy for a wider deployment. It also means I only need to update a single policy when software updates come out.
-* **resetkeychain** is a script to reset a keychain when an AD mobile account user changed their password elsewhere and it is not updating correctly. It just creates a new keychain.
-* **startupChime** re-enables the startup chime on newer macs, because it's fun and it made the blog rounds https://mrmacintosh.com/how-to-enable-the-mac-startup-chime-on-your-2016-macbook-pro/
-
-## Outset User Default Scripts
-These are scripts intended to be used with login-once using outset
-* **defaultdock** using dockutil this clears the dock and sets a default. Its set to run once at login-once and this sets but does not enforce for a new user's profile
-* **defaultusersettings** sets security settings and finder preferences as well as sets the desktop image with desktoppr to a default image.
