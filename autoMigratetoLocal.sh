@@ -15,8 +15,11 @@
 # 7. If the conversion process succeeded, update the permissions on the account's home folder.
 # 8. Ensure Admin rights are retained for the user.
 
+## gets the logged in user
+loggedInUser=$( scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }' )
+
 ## Checks if the username has been provided, asks for it if not
-username=$3
+username=$loggedInUser
 if [[ -z $username ]]; then
 	read -p "Username:" username
 fi
