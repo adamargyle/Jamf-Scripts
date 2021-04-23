@@ -2,6 +2,7 @@
 Scripts I use to customize systems with parameters and API access.
 
 All scripts are using the $4, $5, $6 (etc) parameters as provided by Jamf Pro. I reccomend customizing the fields in Jamf Admin to make it easier to create policies. I've added interactivity for testing the scripts in most cases so it will prompt if the variable is not passed.
+Some scripts which are not Jamf specific are now located in [MacAdminScripts](https://github.com/adamargyle/MacAdminScripts)
 
 ## API Scripts
 Several scripts are using the Jamf API to pull data like the asset tag or assigned user. Then by using this information you can do customization based on information in your inventory already, or uploaded to inventory preload.
