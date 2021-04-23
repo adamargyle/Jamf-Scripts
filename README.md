@@ -8,6 +8,7 @@ Some scripts which are not Jamf specific are now located in [MacAdminScripts](ht
 Several scripts are using the Jamf API to pull data like the asset tag or assigned user. Then by using this information you can do customization based on information in your inventory already, or uploaded to inventory preload.
 * **APIaddAdmin** adds the user registered in the JSS to the admin list.
 * **APIaddtoStaticGroup** adds the computer the script is run on to a Jamf Pro Static Group by its ID number via the API. This is helpful for scoping policies to specific groups, and works well in conjunction with policies and profiles to be applied through Self Service
+* **APIchownAssignedUser** in the event that permissions for a user's folder are not working, this will remotely run a chown (change owner) command to the registered owner's user folder.
 * **APIfirmware** creates a firmware password with a variable including the Asset Tag from the JSS.
 * **APIremoveFWPW** removes a firmware password with a variable including the Asset Tag from the JSS, to be used in conjunction with the script to create. This can be used when erasing a system to prepare for reuse or resale.
 * **APIremoveFromStaticGroup** removes the computer the script is run on from a Jamf Pro Static Group by its ID via the API. This can be used to remove profiles, or prepare a machine to be re-imaged with an erase and install.
